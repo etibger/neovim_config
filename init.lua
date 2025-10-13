@@ -13,7 +13,7 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
-require('lazy').setup({
+require('lazy').setup {
   require 'plugins.colortheme',
   require 'plugins.tmux-navigator',
   require 'plugins.neotree',
@@ -21,7 +21,7 @@ require('lazy').setup({
   require 'plugins.lualine',
   require 'plugins.treesitter',
   require 'plugins.telescope',
-   -- LSP Plugins
+  -- LSP Plugins
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -34,5 +34,10 @@ require('lazy').setup({
       },
     },
   },
-  require 'plugins.lsp'
-})
+  require 'plugins.autocompletion',
+  require 'plugins.lsp',
+  require 'plugins.autoformatting',
+  require 'plugins.gitsigns',
+  require 'plugins.alpha',
+  require 'plugins.indent-blankline',
+}
