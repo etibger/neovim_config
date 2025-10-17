@@ -6,10 +6,12 @@ vim.g.maplocalleader = ','
 vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, {})
 
-vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format, {})
 
 -- For conciseness
 local opts = { noremap = true, silent = true }
+
+vim.keymap.set('n', '<leader>pp', ':set paste<cr>', opts)
+vim.keymap.set('n', '<leader>np', ':set nopaste<cr>', opts)
 
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
