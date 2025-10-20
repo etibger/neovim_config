@@ -42,7 +42,7 @@ return {
       -- you can reuse a shared lspconfig on_attach callback here
       on_attach = function(client, bufnr)
         if client.server_capabilities.documentFormattingProvider then
-          print("Formatter in use: " .. client.name)
+          --print("Formatter in use: " .. client.name)
         end
       end,
     }

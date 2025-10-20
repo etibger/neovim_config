@@ -43,4 +43,5 @@ require('lazy').setup {
   require 'plugins.misc',
   require 'plugins.debug',
   require 'plugins.surround',
+  require 'plugins.venv-selector'
 }
