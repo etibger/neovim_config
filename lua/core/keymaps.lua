@@ -69,7 +69,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader><CR>", ":noh<CR>", { desc = "Cleare highlight" })
 vim.keymap.set(
   "n",
-  "<leader>es",
+  "<leader>se",
   ":VenvSelect fd 'python$' /opt/homebrew/anaconda3/envs/ --full-path -IH -a",
   { desc = "set python venv" }
 )
