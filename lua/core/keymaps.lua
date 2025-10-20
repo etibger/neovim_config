@@ -9,8 +9,7 @@ vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, {})
 -- For conciseness
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<leader>pp", ":set paste<cr>", opts)
-vim.keymap.set("n", "<leader>np", ":set nopaste<cr>", opts)
+vim.keymap.set("n", "<leader>pp", ":setlocal paste!<cr>", opts)
 
 -- save file
 vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
