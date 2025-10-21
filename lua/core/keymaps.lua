@@ -11,9 +11,6 @@ local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<leader>pp", ":setlocal paste!<cr>", opts)
 
--- save file
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
-
 -- save file without auto-formatting
 vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
 
@@ -72,3 +69,15 @@ vim.keymap.set(
   ":VenvSelect fd 'python$' /opt/homebrew/anaconda3/envs/ --full-path -IH -a",
   { desc = "set python venv" }
 )
+
+--open zsh term split
+vim.keymap.set("n", "<leader>ot", ":split term://zsh<CR>", opts)
+
+-- toggle number relativeness
+vim.keymap.set("n", "<leader>nt", function()
+  if vim.o.relativenumber then
+    vim.o.relativenumber = false
+  else
+    vim.o.relativenumber = true
+  end
+end, { desc = "Go to next diagnostic message" })
