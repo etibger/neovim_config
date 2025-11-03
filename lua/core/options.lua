@@ -41,3 +41,17 @@ vim.opt.iskeyword:append '-' -- Hyphenated words recognized by searches (default
 vim.opt.formatoptions:remove { 'c', 'r', 'o' } -- Don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode. (default: 'croql')
 vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 vim.opt.ignorecase = false
+vim.opt.tagrelative = false
+local mali_home = os.getenv("MALI_HOME") or ""
+vim.opt.tags = mali_home .. "/../tags/gpu_design," .. mali_home .. "/../tags/gpu_verif"
+
+-- Remove '-' character from keywords for preventing included in tag lookups 
+local api = vim.api
+local fileTypeSettings = api.nvim_create_augroup("FileTypeSettings", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "systemverilog", "sv" },
+  callback = function()
+    vim.opt_local.iskeyword = vim.opt_local.iskeyword - '-'
+  end,
+  group = fileTypeSettings,
+})
