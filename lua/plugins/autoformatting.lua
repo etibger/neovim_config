@@ -5,12 +5,6 @@ return {
     'nvimtools/none-ls-extras.nvim',
     'jayp0521/mason-null-ls.nvim', -- ensure dependencies are installed
   },
-  opts = function (_, opts)
-    local nls = require("null-ls")
-    opts.source = vim.list_extend(opts.sources or {}, {
-      nls.builtins.diagnostics.cmake_lint,
-    })
-  end,
 
   config = function()
     local null_ls = require 'null-ls'
@@ -26,7 +20,7 @@ return {
         'eslint_d', -- ts/js linter
         'shfmt',
         'clang_format,',
-        'stylua',
+        --'stylua',
         'cmakelint'
       },
       automatic_installation = true,
@@ -36,7 +30,7 @@ return {
       diagnostics.checkmake,
       formatting.prettier.with { filetypes = { 'html', 'json', 'yaml', 'markdown' } },
       formatting.clang_format,
-      formatting.stylua,
+      --formatting.stylua,
       formatting.shfmt.with { args = { '-i', '4' } },
       formatting.terraform_fmt,
       require('none-ls.formatting.ruff').with { extra_args = { '--extend-select', 'I' } },
