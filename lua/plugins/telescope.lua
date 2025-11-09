@@ -27,6 +27,7 @@ return {
             ['<C-k>'] = require('telescope.actions').move_selection_previous, -- move to prev result
             ['<C-j>'] = require('telescope.actions').move_selection_next, -- move to next result
             ['<C-l>'] = require('telescope.actions').select_default, -- open file
+            ['<C-d>'] = require('telescope.actions').delete_buffer,
           },
         },
       },
