@@ -206,37 +206,37 @@ return { -- Main LSP Configuration
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       -- ts_ls = {},
       --
-      ruff = {},
-      pylsp = {
-        settings = {
-          pylsp = {
-            plugins = {
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              mccabe = { enabled = false },
-              pylsp_mypy = { enabled = false },
-              pylsp_black = { enabled = false },
-              pylsp_isort = { enabled = false },
-            },
-          },
-        },
-      },
+      -- ruff = {}, REVISIT fix on EUHPC
+      -- pylsp = { REVISIT fix on EUHPC
+      --   settings = {
+      --     pylsp = {
+      --       plugins = {
+      --         pyflakes = { enabled = false },
+      --         pycodestyle = { enabled = false },
+      --         autopep8 = { enabled = false },
+      --         yapf = { enabled = false },
+      --         mccabe = { enabled = false },
+      --         pylsp_mypy = { enabled = false },
+      --         pylsp_black = { enabled = false },
+      --         pylsp_isort = { enabled = false },
+      --       },
+      --     },
+      --   },
+      -- },
       bashls = {},
-      sqlls = {},
+      -- sqlls = {}, REVISIT fix on EUHPC
       jsonls = {},
       yamlls = {},
-      clangd = {
-        cmd = {
-          "clangd",
-          "--clang-tidy",
-          "-j=5",
-          "--malloc-trim",
-        },
-        filetypes = { "c" }, -- "cpp"
-      },
-      cmake = {},
+      -- clangd = { REVISIT fix on EUHPC
+      --   cmd = {
+      --     "clangd",
+      --     "--clang-tidy",
+      --     "-j=5",
+      --     "--malloc-trim",
+      --   },
+      --   filetypes = { "c" }, -- "cpp"
+      -- },
+      -- cmake = {}, REVISIT fix on EUHPC
       -- lua_ls = {
       --   -- cmd = { ... },
       --   -- filetypes = { ... },
