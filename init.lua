@@ -22,19 +22,7 @@ require('lazy').setup {
   require 'plugins.lualine',
   require 'plugins.treesitter',
   require 'plugins.telescope',
-  -- LSP Plugins
-  {
-    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-    -- used for completion, annotations and signatures of Neovim apis
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
+  require 'plugins.lazydev',
   require 'plugins.autocompletion',
   require 'plugins.lsp',
   require 'plugins.autoformatting',
@@ -46,5 +34,6 @@ require('lazy').setup {
   require 'plugins.surround',
   require 'plugins.venv-selector',
   require 'plugins.overseer',
+  require 'plugins.render-markdown',
 
 }
