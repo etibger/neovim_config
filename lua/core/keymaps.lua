@@ -81,3 +81,6 @@ vim.keymap.set("n", "<leader>nt", function()
     vim.o.relativenumber = true
   end
 end, { desc = "Go to next diagnostic message" })
+-- spellcheck toggle
+vim.keymap.set("n", "<leader>sc", ":setlocal spell spelllang=en_us<CR>", { desc = "Enable spellcheck" })
+vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
