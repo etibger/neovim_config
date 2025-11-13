@@ -4,7 +4,7 @@ vim.g.maplocalleader = ","
 
 -- remap jk to leave insert mode
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, {})
 
 -- For conciseness
 local opts = { noremap = true, silent = true }
@@ -81,3 +81,6 @@ vim.keymap.set("n", "<leader>nt", function()
     vim.o.relativenumber = true
   end
 end, { desc = "Go to next diagnostic message" })
+-- spellcheck toggle
+vim.keymap.set("n", "<leader>sc", ":setlocal spell spelllang=en_us<CR>", { desc = "Enable spellcheck" })
+vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })

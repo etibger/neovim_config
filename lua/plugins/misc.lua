@@ -2,25 +2,25 @@
 return {
   {
     -- autoclose tags
-    'windwp/nvim-ts-autotag',
+    "windwp/nvim-ts-autotag",
   },
   {
     -- detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
+    "tpope/vim-sleuth",
   },
   {
     -- Powerful Git integration for Vim
-    'tpope/vim-fugitive',
+    "tpope/vim-fugitive",
   },
   {
     -- GitHub integration for vim-fugitive
-    'tpope/vim-rhubarb',
+    "tpope/vim-rhubarb",
   },
   {
     -- Hints keybinds
-    'folke/which-key.nvim',
+    "folke/which-key.nvim",
     opts = {
-      delay = 3000,
+      delay = 500,
       -- win = {
       --   border = {
       --     { '┌', 'FloatBorder' },
