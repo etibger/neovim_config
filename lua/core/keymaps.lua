@@ -2,12 +2,12 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
--- remap jk to leave insert mode
-vim.api.nvim_set_keymap("i", "jk", "<Esc>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, {})
-
 -- For conciseness
 local opts = { noremap = true, silent = true }
+
+-- remap jk to leave insert mode
+vim.api.nvim_set_keymap("i", "jk", "<Esc>", opts)
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, {})
 
 vim.keymap.set("n", "<leader>pp", ":setlocal paste!<cr>", opts)
 
@@ -80,7 +80,11 @@ vim.keymap.set("n", "<leader>nt", function()
   else
     vim.o.relativenumber = true
   end
-end, { desc = "Go to next diagnostic message" })
+end, { desc = "Toggle relative number" })
+
 -- spellcheck toggle
 vim.keymap.set("n", "<leader>sc", ":setlocal spell spelllang=en_us<CR>", { desc = "Enable spellcheck" })
 vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
+
+-- undotree
+vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle ,{ desc = "Toggle UndotreeToggle" })
