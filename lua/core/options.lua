@@ -1,5 +1,5 @@
-vim.wo.number = false
-vim.o.relativenumber = false
+vim.wo.number = true
+vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
 vim.o.wrap = false
 vim.o.linebreak = true
@@ -63,3 +63,12 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 5
