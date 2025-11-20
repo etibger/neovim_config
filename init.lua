@@ -11,7 +11,7 @@ require('lazy').setup {
   require 'plugins.bufferline',
   require 'plugins.lualine',
   require 'plugins.treesitter',
-  require 'plugins.telescope',
+  require 'plugins.fzf-lua',
   require 'plugins.lazydev',
   require 'plugins.autocompletion',
   require 'plugins.lsp',
