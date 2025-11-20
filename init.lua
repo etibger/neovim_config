@@ -25,6 +25,7 @@ require('lazy').setup {
   require 'plugins.venv-selector',
   require 'plugins.overseer',
   require 'plugins.render-markdown',
+  require 'plugins.oil',
   install = { colorscheme = {"kanagawa"}},
   checker = { enabled = true },
 

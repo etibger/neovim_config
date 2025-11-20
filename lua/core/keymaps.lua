@@ -88,3 +88,5 @@ vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellch
 
 -- undotree
 vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle ,{ desc = "Toggle UndotreeToggle" })
+-- Oil
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
