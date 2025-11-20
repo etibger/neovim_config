@@ -52,11 +52,11 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", function()
+vim.keymap.set("n", "\\d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to previous diagnostic message" })
 
-vim.keymap.set("n", "]d", function()
+vim.keymap.set("n", ";d", function()
   vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next diagnostic message" })
 
@@ -83,10 +83,14 @@ vim.keymap.set("n", "<leader>nt", function()
 end, { desc = "Toggle relative number" })
 
 -- spellcheck toggle
-vim.keymap.set("n", "<leader>sc", ":setlocal spell spelllang=en_us<CR>", { desc = "Enable spellcheck" })
+vim.keymap.set("n", "<leader>sc", ":setlocal spell<CR>", { desc = "Enable spellcheck" })
 vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
 
 -- undotree
 vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle ,{ desc = "Toggle UndotreeToggle" })
 -- Oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Spell check
+vim.keymap.set("n", ";s", "]s", { desc = "Move to next misspelled word" })
+vim.keymap.set("n", "\\s", "[s", { desc = "Move to previous misspelled word" })
