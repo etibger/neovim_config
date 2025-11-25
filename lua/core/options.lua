@@ -1,7 +1,7 @@
 vim.wo.number = true
 vim.o.relativenumber = true
 vim.o.clipboard = "unnamedplus"
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.mouse = "a"
 vim.o.autoindent = true
@@ -12,7 +12,7 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.expandtab = true
 vim.o.sidescrolloff = 8 -- Minimal number of screen columns either side of cursor if wrap is `false` (default: 0)
-vim.o.cursorline = true -- Highlight the current line 
+vim.o.cursorline = true -- Highlight the current line
 vim.opt.cursorcolumn = true -- Highlight the current column
 vim.o.splitbelow = true -- Force all horizontal splits to go below current window (default: false)
 vim.o.splitright = true -- Force all vertical splits to go to the right of current window (default: false)
