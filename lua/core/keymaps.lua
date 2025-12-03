@@ -86,6 +86,9 @@ end, { desc = "Toggle relative number" })
 vim.keymap.set("n", "<leader>sc", ":setlocal spell<CR>", { desc = "Enable spellcheck" })
 vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
 
+-- signcolumn toggle
+vim.api.nvim_set_keymap('n', '<Leader>tsc', ':lua vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"<CR>', {noremap = true, silent = true})
+
 -- undotree
 vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle ,{ desc = "Toggle UndotreeToggle" })
 -- Oil
