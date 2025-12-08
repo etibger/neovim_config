@@ -86,11 +86,35 @@ end, { desc = "Toggle relative number" })
 vim.keymap.set("n", "<leader>sc", ":setlocal spell<CR>", { desc = "Enable spellcheck" })
 vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
 
+-- signcolumn toggle
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>tsc",
+  ':lua vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"<CR>',
+  { noremap = true, silent = true }
+)
+
 -- undotree
-vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle ,{ desc = "Toggle UndotreeToggle" })
+vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle UndotreeToggle" })
 -- Oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Spell check
 vim.keymap.set("n", ";s", "]s", { desc = "Move to next misspelled word" })
 vim.keymap.set("n", "\\s", "[s", { desc = "Move to previous misspelled word" })
+
+--
+vim.g.transparent = false
+
+local function toggle_transparent()
+  vim.g.transparent = not vim.g.transparent
+  if vim.g.transparent then
+    vim.cmd([[hi Normal guibg=none]])
+    vim.cmd([[hi NormalFloat guibg=none]])
+  else
+    vim.cmd([[hi Normal guifg=#c5c9c5 guibg=#181616]])
+    vim.cmd([[hi NormalFloat guifg=#c5c9c5 guibg=#181616]])
+  end
+end
+
+vim.keymap.set("n", "<leader>tt", toggle_transparent, { desc = "Toggle transparency setting" })
