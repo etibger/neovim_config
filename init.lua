@@ -27,14 +27,6 @@ require("lazy").setup({
   require("plugins.overseer"),
   require("plugins.render-markdown"),
   require("plugins.oil"),
-  {
-    "vimpostor/vim-tpipeline",
-    config = function()
-      vim.g.tpipeline_autoenabled = 1
-      vim.g.tpipeline_restore = 1
-      vim.g.tpipeline_clearstl = 1
-    end,
-  },
   install = { colorscheme = { "kanagawa" } },
   checker = { enabled = true },
 })
