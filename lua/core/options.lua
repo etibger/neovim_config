@@ -77,4 +77,3 @@ vim.opt.scrolloff = 5
 
 -- Whether transparency is enabled
 vim.g.transparent_enabled = true
-
