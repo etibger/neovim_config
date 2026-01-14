@@ -27,6 +27,8 @@ require("lazy").setup({
   require("plugins.overseer"),
   require("plugins.render-markdown"),
   require("plugins.oil"),
+  require("plugins.conform"),
+  require("plugins.github-preview"),
   install = { colorscheme = { "kanagawa" } },
   checker = { enabled = true },
 })

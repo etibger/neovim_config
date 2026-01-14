@@ -118,3 +118,17 @@ local function toggle_transparent()
 end
 
 vim.keymap.set("n", "<leader>tt", toggle_transparent, { desc = "Toggle transparency setting" })
+
+-- copy full file path into + register and notify
+vim.keymap.set("n", "<leader>yp", function()
+  local fullpath = vim.fn.expand("%:p")
+  vim.fn.setreg("+", fullpath)
+  vim.notify("Copied path: " .. fullpath, vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Copy full file path" })
+
+-- copy path relative to nvim's start directory into + register and notify
+vim.keymap.set("n", "<leader>yr", function()
+  local rel = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+  vim.fn.setreg("+", rel)
+  vim.notify("Copied relative path: " .. rel, vim.log.levels.INFO)
+end, { noremap = true, silent = true, desc = "Copy file path relative to cwd" })
