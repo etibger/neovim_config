@@ -5,6 +5,7 @@ require("plugins.lazy")
 
 require("lazy").setup({
   require("plugins.kanagawa"),
+  require("plugins.copilot"),
   require("plugins.notify"),
   require("plugins.undotree"),
   require("plugins.tmux-navigator"),
