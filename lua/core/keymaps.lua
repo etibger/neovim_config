@@ -71,7 +71,7 @@ vim.keymap.set(
 )
 
 --open zsh term split
-vim.keymap.set("n", "<leader>ot", ":split term://zsh<CR>", opts)
+vim.keymap.set("n", "<leader>ot", ":split term://bash<CR>", opts)
 
 -- toggle number relativeness
 vim.keymap.set("n", "<leader>nt", function()

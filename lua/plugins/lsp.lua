@@ -180,6 +180,7 @@ return { -- Main LSP Configuration
     --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
     local capabilities = require("blink.cmp").get_lsp_capabilities()
+    local util = require("lspconfig.util")
 
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -202,23 +203,19 @@ return { -- Main LSP Configuration
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       -- ts_ls = {},
       --
-      -- ruff = {}, REVISIT fix on EUHPC
-      -- pylsp = { REVISIT fix on EUHPC
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         pyflakes = { enabled = false },
-      --         pycodestyle = { enabled = false },
-      --         autopep8 = { enabled = false },
-      --         yapf = { enabled = false },
-      --         mccabe = { enabled = false },
-      --         pylsp_mypy = { enabled = false },
-      --         pylsp_black = { enabled = false },
-      --         pylsp_isort = { enabled = false },
-      --       },
-      --     },
-      --   },
-      -- },
+      ruff = {
+        cmd = { "ruff", "server" }, -- important: start the LSP server mode
+        root_dir = util.root_pattern("pyproject.toml", ".git"),
+        init_options = {
+          settings = {
+            -- these are Ruff LSP settings (not pyproject.toml settings)
+            -- keep this minimal; prefer configuring rules in pyproject.toml
+            organizeImports = true,
+            -- you can add:
+            -- lineLength = 88,
+            },
+          },
+        },
       bashls = {},
       -- sqlls = {}, REVISIT fix on EUHPC
       jsonls = {},
@@ -233,35 +230,35 @@ return { -- Main LSP Configuration
       --   filetypes = { "c" }, -- "cpp"
       -- },
       -- cmake = {}, REVISIT fix on EUHPC
-      -- lua_ls = {
-      --   -- cmd = { ... },
-      --   -- filetypes = { ... },
-      --   -- capabilities = {},
-      --   settings = {
-      --     Lua = {
-      --       completion = {
-      --         callSnippet = "Replace",
-      --       },
-      --       runtime = { version = "LuaJIT" },
-      --       workspace = {
-      --         checkThirdParty = false,
-      --         library = {
-      --           "${3rd}/luv/library",
-      --           unpack(vim.api.nvim_get_runtime_file("", true)),
-      --         },
-      --       },
-      --       diagnostics = {
-      --         globals = { "vim" },
-      --         disable = { "missing-fields" },
-      --       },
-      --       format = {
-      --         enable = true,
-      --       },
-      --       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      --       -- diagnostics = { disable = { 'missing-fields' } },
-      --     },
-      --   },
-      -- },
+      lua_ls = {
+        -- cmd = { ... },
+        -- filetypes = { ... },
+        -- capabilities = {},
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace",
+            },
+            runtime = { version = "LuaJIT" },
+            workspace = {
+              checkThirdParty = false,
+              library = {
+                "${3rd}/luv/library",
+                unpack(vim.api.nvim_get_runtime_file("", true)),
+              },
+            },
+            diagnostics = {
+              globals = { "vim" },
+              disable = { "missing-fields" },
+            },
+            format = {
+              enable = true,
+            },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
+          },
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed
@@ -282,6 +279,10 @@ return { -- Main LSP Configuration
     --   "stylua", -- Used to format Lua code
     -- })
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+    require("lspconfig").pylsp.setup({
+      autostart = false,
+    })
 
     require("mason-lspconfig").setup({
       ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
