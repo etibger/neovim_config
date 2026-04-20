@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if [ -z "$MALI_HOME" ]; then
+  echo "MALI_HOME is not defined, please source design/sourceme"
+  exit 1
+fi
+
+command_name="verilog-batch-auto"
+extra_opts=()
+
+OPTIND=1
+while getopts "hd" opt; do
+  case "$opt" in
+    h)
+      echo "Usage: $0 [-d] file [file...]"
+      echo " -d: prints diff instead of updating files"
+      exit 0
+      ;;
+    d)
+      command_name="verilog-batch-diff-auto"
+      extra_opts=(-l "${MALI_HOME}/shared/elisp/verilog-mode-diff-whitespace.el")
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+[ "$1" = "--" ] && shift
+
+/arm/tools/setup/bin/mrun - +util +gnu/emacs/28.1 \
+  emacs \
+  --batch \
+  --no-site-file \
+  --no-site-lisp \
+  -l "${MALI_HOME}/shared/elisp/verilog-mode.el" \
+  -l "${MALI_HOME}/shared/elisp/verilog-mode-customise.el" \
+  "${extra_opts[@]}" \
+  "$@" \
+  -f verilog-mode-customise \
+  -f "$command_name" 2>&1

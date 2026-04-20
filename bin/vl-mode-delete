@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ -z "$MALI_HOME" ]; then
+  echo "MALI_HOME is not defined, please source design/sourceme"
+  exit 1
+fi
+
+/arm/tools/setup/bin/mrun - +util +gnu/emacs/28.1 \
+  emacs \
+  --batch \
+  --no-site-file \
+  --no-site-lisp \
+  -l "${MALI_HOME}/shared/elisp/verilog-mode.el" \
+  -l "${MALI_HOME}/shared/elisp/verilog-mode-customise.el" \
+  "$@" \
+  -f verilog-mode-customise \
+  -f verilog-batch-delete-auto 2>&1
