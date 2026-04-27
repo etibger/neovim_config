@@ -12,6 +12,7 @@ return { -- Main LSP Configuration
     { "j-hui/fidget.nvim", opts = {} },
 
     -- Allows extra capabilities provided by blink.cmp
+    "saghen/blink.lib",
     "saghen/blink.cmp",
   },
   config = function()
