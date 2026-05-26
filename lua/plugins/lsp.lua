@@ -12,7 +12,14 @@ return { -- Main LSP Configuration
     { "j-hui/fidget.nvim", opts = {} },
 
     -- Allows extra capabilities provided by blink.cmp
+    {
     "saghen/blink.cmp",
+    branch = "main",
+    dependencies = {
+      "saghen/blink.lib",
+      "rafamadriz/friendly-snippets",
+      },
+    },
   },
   config = function()
     -- Brief aside: **What is LSP?**

@@ -28,7 +28,11 @@ require("lazy").setup({
   require("plugins.render-markdown"),
   require("plugins.oil"),
   require("plugins.conform"),
-  require("plugins.github-preview"),
+  require("plugins.github-preview"),} , {
   install = { colorscheme = { "kanagawa" } },
   checker = { enabled = true },
+  rocks = {
+    enabled = false,
+    hererocks = false,
+  },
 })
