@@ -6,7 +6,6 @@ require("plugins.lazy")
 require("lazy").setup({
   -- this first argument is ONLY your spec
   require("plugins.kanagawa"),
-  require("plugins.copilot"),
   require("plugins.notify"),
   require("plugins.undotree"),
   require("plugins.tmux-navigator"),
@@ -25,7 +24,6 @@ require("lazy").setup({
   require("plugins.misc"),
   require("plugins.debug"),
   require("plugins.surround"),
-  require("plugins.venv-selector"),
   require("plugins.overseer"),
   require("plugins.render-markdown"),
   require("plugins.oil"),

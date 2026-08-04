@@ -43,8 +43,7 @@ vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Don't insert the current comm
 vim.opt.runtimepath:remove("/usr/share/vim/vimfiles") -- Separate Vim plugins from Neovim in case Vim still in use (default: includes this path if Vim is installed)
 vim.opt.ignorecase = false
 vim.opt.tagrelative = false
-local mali_home = os.getenv("MALI_HOME") or ""
-vim.opt.tags = mali_home .. "/../tags/gpu_design," .. mali_home .. "/../tags/gpu_verif"
+vim.opt.tags = { "tags/gpu_design", "tags/gpu_verif" }
 
 -- Remove '-' character from keywords for preventing included in tag lookups
 local api = vim.api
@@ -77,4 +76,3 @@ vim.opt.scrolloff = 5
 
 -- Whether transparency is enabled
 vim.g.transparent_enabled = true
-
