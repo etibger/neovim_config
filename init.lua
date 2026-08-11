@@ -283,3 +283,234 @@ vim.g.netrw_banner = 0       -- Hide the massive, useless banner
 vim.g.netrw_liststyle = 3    -- Use tree-style view
 vim.g.netrw_winsize = 25     -- Limit initial window width
 
+-- ---------------------------------------------------------------------------
+-- Bootstrap lazy.nvim
+-- ---------------------------------------------------------------------------
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+
+  local out = vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--branch=stable",
+    lazyrepo,
+    lazypath,
+  })
+
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+    }, true, {})
+
+    os.exit(1)
+  end
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+-- ---------------------------------------------------------------------------
+-- Plugins
+-- ---------------------------------------------------------------------------
+
+require("lazy").setup({
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+
+    -- master = Neovim 0.11 compatible API
+    branch = "master",
+
+    build = ":TSUpdate",
+
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "bash",
+          "c",
+          "git_config",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "html",
+          "javascript",
+          "json",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "python",
+          "rust",
+          "toml",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
+        },
+
+        auto_install = true,
+
+        highlight = {
+          enable = true,
+        },
+
+        indent = {
+          enable = true,
+        },
+      })
+    end,
+  },
+
+  -- Fuzzy finder
+  {
+    "ibhagwan/fzf-lua",
+
+    keys = {
+      {
+        "<leader>ff",
+        function()
+          require("fzf-lua").files()
+        end,
+        desc = "Find files",
+      },
+      {
+        "<leader>fg",
+        function()
+          require("fzf-lua").live_grep()
+        end,
+        desc = "Live grep",
+      },
+      {
+        "<leader>fb",
+        function()
+          require("fzf-lua").buffers()
+        end,
+        desc = "Buffers",
+      },
+      {
+        "<leader>fh",
+        function()
+          require("fzf-lua").help_tags()
+        end,
+        desc = "Help",
+      },
+      {
+        "<leader>fr",
+        function()
+          require("fzf-lua").oldfiles()
+        end,
+        desc = "Recent files",
+      },
+    },
+
+    opts = {},
+  },
+
+  -- Git signs in gutter
+  {
+    "lewis6991/gitsigns.nvim",
+
+    event = { "BufReadPre", "BufNewFile" },
+
+    opts = {
+      on_attach = function(bufnr)
+        local gs = require("gitsigns")
+
+        local function bmap(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, {
+            buffer = bufnr,
+            desc = desc,
+          })
+        end
+
+        bmap("n", ";h", gs.next_hunk, "Next git hunk")
+        bmap("n", ";h", gs.prev_hunk, "Previous git hunk")
+
+        bmap("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
+        bmap("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
+        bmap("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
+        bmap("n", "<leader>hb", gs.blame_line, "Blame line")
+        bmap("n", "<leader>hd", gs.diffthis, "Diff file")
+      end,
+    },
+  },
+
+  -- Fugitive
+  {
+    "tpope/vim-fugitive",
+
+    cmd = {
+      "Git",
+      "G",
+      "Gdiffsplit",
+      "Gvdiffsplit",
+      "Gedit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+    },
+
+    keys = {
+      {
+        "<leader>gg",
+        "<cmd>Git<CR>",
+        desc = "Git status",
+      },
+    },
+  },
+
+  -- Show available keybindings
+  {
+    "folke/which-key.nvim",
+
+    event = "VeryLazy",
+
+    opts = {
+      delay = 300,
+    },
+  },
+
+  -- TODO / FIXME / NOTE highlighting
+  {
+    "folke/todo-comments.nvim",
+
+    event = { "BufReadPost", "BufNewFile" },
+
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+
+    opts = {},
+
+    keys = {
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next TODO",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Previous TODO",
+      },
+      {
+        "<leader>ft",
+        "<cmd>TodoFzfLua<CR>",
+        desc = "Find TODOs",
+      },
+    },
+  },
+}, {
+  change_detection = {
+    notify = false,
+  },
+})
