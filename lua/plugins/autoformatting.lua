@@ -20,7 +20,7 @@ return {
         "prettier", -- ts/js formatter
         "eslint_d", -- ts/js linter
         "shfmt",
-        "clang_format,",
+        "clang_format",
         --'stylua',
         "cmakelint",
         "rstcheck",
@@ -62,8 +62,52 @@ return {
         end,
       }),
     }
+    local checkmake = {
+  name = "checkmake",
+  method = null_ls.methods.DIAGNOSTICS,
+  filetypes = { "make" },
+
+  generator = null_ls.generator({
+    command = "checkmake",
+    args = {
+      "--format={{.LineNumber}}:{{.Rule}}:{{.Violation}}",
+      "$FILENAME",
+    },
+    to_stdin = false,
+    from_stderr = false,
+    ignore_stderr = true,
+
+    check_exit_code = function(code)
+      -- 0 = no violations
+      -- 1 = violations found
+      return code == 0 or code == 1
+    end,
+
+    format = "line",
+
+    on_output = function(line)
+      -- Ignore checkmake's final summary line:
+      -- "Error: violations found (N)"
+      local row, code, message = line:match("^(%d+):([^:]+):(.+)$")
+
+      if not row then
+        return nil
+      end
+
+      return {
+        row = tonumber(row),
+        col = 1,
+        code = code,
+        message = message,
+        severity = vim.diagnostic.severity.WARN,
+        source = "checkmake",
+      }
+    end,
+  }),
+}
+
     local sources = {
-      diagnostics.checkmake,
+      checkmake,
       formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
       formatting.clang_format,
       --formatting.stylua,
@@ -76,7 +120,7 @@ return {
 
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     null_ls.setup({
-      -- debug = true, -- Enable debug mode. Inspect logs with :NullLsLog.
+      debug = true, -- Enable debug mode. Inspect logs with :NullLsLog.
       sources = sources,
       -- you can reuse a shared lspconfig on_attach callback here
       on_attach = function(client, bufnr)
