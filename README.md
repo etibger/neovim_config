@@ -36,6 +36,25 @@ and diagnostics, and Oil for filesystem navigation.
 `lazy-lock.json` is intentionally ignored. The same configuration is used on
 several systems and the lock file caused frequent branch conflicts.
 
+## Host requirements
+
+The host must provide Git, curl, unzip, tar, gzip, Node.js, npm, `uv`, and a
+Python 3.10 or newer executable. Mason uses a host Python to install Python
+packages; the current `rstcheck` package cannot be installed with Apple's
+Python 3.9.
+
+With `uv`, install a suitable versioned Python without changing the default
+`python3`:
+
+```sh
+uv python install 3.12
+```
+
+Ensure the `uv` executable directory (normally `~/.local/bin`) is in `PATH`,
+then confirm that `python3.12 --version` works before starting Neovim. Mason
+automatically selects a compatible versioned executable when the default
+`python3` is too old.
+
 ## Startup flow
 
 `init.lua` performs three core steps before configuring plugins:

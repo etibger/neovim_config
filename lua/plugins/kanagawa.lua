@@ -16,7 +16,9 @@ return {
     require("kanagawa").setup(opts)
     vim.cmd("colorscheme kanagawa")
   end,
-  build = function()
-    vim.cmd("KanagawaCompile")
+  build = function(plugin)
+    local kanagawa = require("kanagawa")
+    kanagawa.setup(plugin.opts)
+    kanagawa.compile()
   end,
 }
