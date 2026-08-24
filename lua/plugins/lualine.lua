@@ -41,7 +41,7 @@ return {
         theme = "auto",
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
-        disabled_filetypes = { "alpha", "neo-tree" },
+        disabled_filetypes = { "alpha" },
       },
       sections = {
         lualine_a = { paste_mode, mode },

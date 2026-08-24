@@ -14,7 +14,6 @@ return {
       filetypes = {
         "help",
         "alpha",
-        "neo-tree",
       },
     },
   },

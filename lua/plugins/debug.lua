@@ -5,7 +5,6 @@ return {
     "nvim-neotest/nvim-nio",
     "mason-org/mason.nvim",
     "jay-babu/mason-nvim-dap.nvim",
-    "leoluz/nvim-dap-go",
     "mfussenegger/nvim-dap-python",
   },
   keys = {
@@ -64,11 +63,10 @@ return {
     local dapui = require("dapui")
 
     require("mason-nvim-dap").setup({
-      ensure_installed = { "codelldb", "python", "delve" },
+      ensure_installed = { "codelldb", "python" },
       automatic_installation = false,
       handlers = {
         python = function() end,
-        delve = function() end,
       },
     })
 
@@ -128,9 +126,6 @@ return {
     dap.listeners.before.event_terminated.dapui_config = dapui.close
     dap.listeners.before.event_exited.dapui_config = dapui.close
 
-    require("dap-go").setup({
-      delve = { detached = vim.fn.has("win32") == 0 },
-    })
     require("dap-python").setup("debugpy-adapter")
   end,
 }

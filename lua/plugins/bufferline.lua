@@ -2,7 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = {
     "moll/vim-bbye",
-    "nvim-tree/nvim-web-devicons",
+    "nvim-mini/mini.icons",
   },
   opts = {
     options = {

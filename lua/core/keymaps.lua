@@ -52,7 +52,6 @@ map("n", "<leader>tsc", function()
 end, { desc = "Toggle sign column" })
 
 map("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
-map("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
 map("n", ";s", "]s", { desc = "Next misspelling" })
 map("n", "\\s", "[s", { desc = "Previous misspelling" })
 

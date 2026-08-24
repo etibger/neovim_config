@@ -6,7 +6,7 @@ require("lazy").setup({
   { import = "plugins" },
 }, {
   install = { colorscheme = { "kanagawa" } },
-  checker = { enabled = true },
+  checker = { enabled = false },
   rocks = {
     enabled = true,
     root = vim.fn.stdpath("data") .. "/lazy-rocks",

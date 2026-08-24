@@ -7,6 +7,21 @@ return {
   config = function()
     local null_ls = require("null-ls")
     local formatting = null_ls.builtins.formatting
+    local helpers = require("null-ls.helpers")
+    local methods = require("null-ls.methods")
+
+    local mbake_uv = helpers.make_builtin({
+      name = "mbake_uv",
+      method = methods.internal.FORMATTING,
+      filetypes = { "make" },
+      generator_opts = {
+        command = "uv",
+        args = { "run", "mbake", "format", "$FILENAME" },
+        to_stdin = false,
+        to_temp_file = true,
+      },
+      factory = helpers.formatter_factory,
+    })
 
     local rstcheck = {
       name = "rstcheck",
@@ -69,6 +84,7 @@ return {
     null_ls.setup({
       sources = {
         checkmake,
+        mbake_uv,
         formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
         formatting.shfmt.with({ args = { "-i", "4" } }),
         formatting.terraform_fmt,

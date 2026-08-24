@@ -1,1 +1,3 @@
 lazy-lock.json
+private/tmp/*
+!private/tmp/.gitkeep
