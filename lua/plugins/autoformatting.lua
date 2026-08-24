@@ -21,7 +21,7 @@ return {
         "eslint_d", -- ts/js linter
         "shfmt",
         "clang_format",
-        --'stylua',
+        'stylua',
         "cmakelint",
         "rstcheck",
       },
@@ -110,6 +110,7 @@ return {
       checkmake,
       formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown" } }),
       formatting.clang_format,
+      -- use stylue lsp instead
       --formatting.stylua,
       formatting.shfmt.with({ args = { "-i", "4" } }),
       formatting.terraform_fmt,

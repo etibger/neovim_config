@@ -234,35 +234,33 @@ return { -- Main LSP Configuration
         filetypes = { "c" }, -- "cpp"
       },
       cmake = {},
-      -- lua_ls = {
-      --   -- cmd = { ... },
-      --   -- filetypes = { ... },
-      --   -- capabilities = {},
-      --   settings = {
-      --     Lua = {
-      --       completion = {
-      --         callSnippet = "Replace",
-      --       },
-      --       runtime = { version = "LuaJIT" },
-      --       workspace = {
-      --         checkThirdParty = false,
-      --         library = {
-      --           "${3rd}/luv/library",
-      --           unpack(vim.api.nvim_get_runtime_file("", true)),
-      --         },
-      --       },
-      --       diagnostics = {
-      --         globals = { "vim" },
-      --         disable = { "missing-fields" },
-      --       },
-      --       format = {
-      --         enable = true,
-      --       },
-      --       -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      --       -- diagnostics = { disable = { 'missing-fields' } },
-      --     },
-      --   },
-      -- },
+      stylua = {},
+      lua_ls = {
+    on_attach = function(client)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+  end,
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace",
+      },
+      runtime = {
+        version = "LuaJIT",
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+        },
+      },
+      diagnostics = {
+        globals = { "vim" },
+        disable = { "missing-fields" },
+      },
+    },
+  },
+},
     }
 
     -- Ensure the servers and tools above are installed
@@ -286,17 +284,12 @@ return { -- Main LSP Configuration
 
     require("mason-lspconfig").setup({
       ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for ts_ls)
-          -- server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
-        end,
-      },
+      automatic_enable = false,
     })
+
+    for server_name, server in pairs(servers) do
+      vim.lsp.config(server_name, server)
+      vim.lsp.enable(server_name)
+    end
   end,
 }
