@@ -142,7 +142,9 @@ return {
         filetypes = { "c" },
       },
       cmake = {},
-      stylua = {},
+      stylua = {
+        cmd = { "stylua", "--lsp", "--search-parent-directories" },
+      },
       lua_ls = without_formatting({
         settings = {
           Lua = {
