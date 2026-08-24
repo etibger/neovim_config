@@ -1,20 +1,12 @@
 return {
   "lewis6991/gitsigns.nvim",
   opts = {
-    signs = {
-      add = { text = "+" },
-      change = { text = "~" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
+    current_line_blame = true,
+    current_line_blame_opts = {
+      delay = 500,
+      virt_text_pos = "eol",
     },
-    signs_staged = {
-      add = { text = "+" },
-      change = { text = "~" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
-    },
+    current_line_blame_formatter = " <author>, <author_time:%R> - <summary>",
     on_attach = function(bufnr)
       local gitsigns = require("gitsigns")
 
@@ -62,6 +54,7 @@ return {
         gitsigns.setqflist("all")
       end, { desc = "All repository hunks" })
       map("n", "<leader>hq", gitsigns.setqflist, { desc = "Buffer hunks" })
+      map("n", "<leader>tg", gitsigns.toggle_signs, { desc = "Toggle Git signs" })
       map("n", "<leader>tb", gitsigns.toggle_current_line_blame, { desc = "Toggle line blame" })
       map("n", "<leader>tw", gitsigns.toggle_word_diff, { desc = "Toggle word diff" })
       map({ "o", "x" }, "ih", gitsigns.select_hunk, { desc = "Select Git hunk" })

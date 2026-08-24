@@ -47,10 +47,6 @@ map("n", "<leader>nt", function()
 end, { desc = "Toggle relative numbers" })
 map("n", "<leader>sc", "<cmd>setlocal spell<cr>", { desc = "Enable spell checking" })
 map("n", "<leader>nsc", "<cmd>setlocal nospell<cr>", { desc = "Disable spell checking" })
-map("n", "<leader>tsc", function()
-  vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
-end, { desc = "Toggle sign column" })
-
 map("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
 map("n", ";s", "]s", { desc = "Next misspelling" })
 map("n", "\\s", "[s", { desc = "Previous misspelling" })
