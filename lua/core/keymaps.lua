@@ -1,134 +1,75 @@
--- Set leader key
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
--- For conciseness
-local opts = { noremap = true, silent = true }
+local map = vim.keymap.set
+local opts = { silent = true }
 
--- remap jk to leave insert mode
-vim.api.nvim_set_keymap("i", "jk", "<Esc>", opts)
-vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, {})
+map("i", "jk", "<Esc>", opts)
+map("n", "<leader>cf", vim.lsp.buf.format, { desc = "Format buffer" })
+map("n", "<leader>pp", "<cmd>setlocal paste!<cr>", opts)
+map("n", "<leader>sn", "<cmd>noautocmd write<cr>", { desc = "Save without autocommands" })
 
-vim.keymap.set("n", "<leader>pp", ":setlocal paste!<cr>", opts)
+map("n", "<Up>", "<cmd>resize -2<cr>", opts)
+map("n", "<Down>", "<cmd>resize +2<cr>", opts)
+map("n", "<Left>", "<cmd>vertical resize -2<cr>", opts)
+map("n", "<Right>", "<cmd>vertical resize +2<cr>", opts)
 
--- save file without auto-formatting
-vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
+map("n", "<Tab>", "<cmd>bnext<cr>", opts)
+map("n", "<S-Tab>", "<cmd>bprevious<cr>", opts)
+map("n", "<leader>x", "<cmd>bdelete!<cr>", { desc = "Delete buffer" })
 
--- Resize with arrows
-vim.keymap.set("n", "<Up>", ":resize -2<CR>", opts)
-vim.keymap.set("n", "<Down>", ":resize +2<CR>", opts)
-vim.keymap.set("n", "<Left>", ":vertical resize -2<CR>", opts)
-vim.keymap.set("n", "<Right>", ":vertical resize +2<CR>", opts)
+map("n", "<leader>v", "<C-w>v", { desc = "Split vertically" })
+map("n", "<leader>h", "<C-w>s", { desc = "Split horizontally" })
+map("n", "<leader>xs", "<cmd>close<cr>", { desc = "Close window" })
 
--- Buffers
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
-vim.keymap.set("n", "<leader>x", ":bdelete!<CR>", opts) -- close buffer
-vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", opts) -- new buffer
+map("n", "<leader>to", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader>tx", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
+map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
--- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts) -- split window vertically
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts) -- split window horizontally
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>xs", ":close<CR>", opts) -- close current split window
+map("n", "<leader>lw", "<cmd>setlocal wrap!<cr>", { desc = "Toggle line wrapping" })
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
 
--- Navigate between splits
-vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
-vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", opts)
-vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
-vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
-
--- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts) -- open new tab
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts) --  go to previous tab
-
--- Toggle line wrapping
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
-
--- Stay in indent mode
-vim.keymap.set("v", "<", "<gv", opts)
-vim.keymap.set("v", ">", ">gv", opts)
-
--- Diagnostic keymaps
-vim.keymap.set("n", "\\d", function()
+map("n", "\\d", function()
   vim.diagnostic.jump({ count = -1, float = true })
-end, { desc = "Go to previous diagnostic message" })
-
-vim.keymap.set("n", ";d", function()
+end, { desc = "Previous diagnostic" })
+map("n", ";d", function()
   vim.diagnostic.jump({ count = 1, float = true })
-end, { desc = "Go to next diagnostic message" })
+end, { desc = "Next diagnostic" })
+map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics location list" })
+map("n", "<leader><CR>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-vim.keymap.set("n", "<leader><CR>", ":noh<CR>", { desc = "Cleare highlight" })
-vim.keymap.set(
-  "n",
-  "<leader>se",
-  ":VenvSelect fd 'python$' /opt/homebrew/anaconda3/envs/ --full-path -IH -a",
-  { desc = "set python venv" }
-)
+map("n", "<leader>ot", "<cmd>split term://zsh<cr>", { desc = "Open terminal" })
+map("n", "<leader>nt", function()
+  vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = "Toggle relative numbers" })
+map("n", "<leader>sc", "<cmd>setlocal spell<cr>", { desc = "Enable spell checking" })
+map("n", "<leader>nsc", "<cmd>setlocal nospell<cr>", { desc = "Disable spell checking" })
+map("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
+map("n", ";s", "]s", { desc = "Next misspelling" })
+map("n", "\\s", "[s", { desc = "Previous misspelling" })
 
---open zsh term split
-vim.keymap.set("n", "<leader>ot", ":split term://zsh<CR>", opts)
-
--- toggle number relativeness
-vim.keymap.set("n", "<leader>nt", function()
-  if vim.o.relativenumber then
-    vim.o.relativenumber = false
-  else
-    vim.o.relativenumber = true
-  end
-end, { desc = "Toggle relative number" })
-
--- spellcheck toggle
-vim.keymap.set("n", "<leader>sc", ":setlocal spell<CR>", { desc = "Enable spellcheck" })
-vim.keymap.set("n", "<leader>nsc", ":set nospell<CR>", { desc = "Disable spellcheck" })
-
--- signcolumn toggle
-vim.api.nvim_set_keymap(
-  "n",
-  "<Leader>tsc",
-  ':lua vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"<CR>',
-  { noremap = true, silent = true }
-)
-
--- undotree
-vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle UndotreeToggle" })
--- Oil
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
--- Spell check
-vim.keymap.set("n", ";s", "]s", { desc = "Move to next misspelled word" })
-vim.keymap.set("n", "\\s", "[s", { desc = "Move to previous misspelled word" })
-
---
-vim.g.transparent = false
-
-local function toggle_transparent()
+local function toggle_transparency()
   vim.g.transparent = not vim.g.transparent
   if vim.g.transparent then
-    vim.cmd([[hi Normal guibg=none]])
-    vim.cmd([[hi NormalFloat guibg=none]])
+    vim.cmd([[highlight Normal guibg=none]])
+    vim.cmd([[highlight NormalFloat guibg=none]])
   else
-    vim.cmd([[hi Normal guifg=#c5c9c5 guibg=#181616]])
-    vim.cmd([[hi NormalFloat guifg=#c5c9c5 guibg=#181616]])
+    vim.cmd([[highlight Normal guifg=#c5c9c5 guibg=#181616]])
+    vim.cmd([[highlight NormalFloat guifg=#c5c9c5 guibg=#181616]])
   end
 end
 
-vim.keymap.set("n", "<leader>tt", toggle_transparent, { desc = "Toggle transparency setting" })
-
--- copy full file path into + register and notify
-vim.keymap.set("n", "<leader>yp", function()
-  local fullpath = vim.fn.expand("%:p")
-  vim.fn.setreg("+", fullpath)
-  vim.notify("Copied path: " .. fullpath, vim.log.levels.INFO)
-end, { noremap = true, silent = true, desc = "Copy full file path" })
-
--- copy path relative to nvim's start directory into + register and notify
-vim.keymap.set("n", "<leader>yr", function()
-  local rel = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
-  vim.fn.setreg("+", rel)
-  vim.notify("Copied relative path: " .. rel, vim.log.levels.INFO)
-end, { noremap = true, silent = true, desc = "Copy file path relative to cwd" })
+map("n", "<leader>tt", toggle_transparency, { desc = "Toggle transparency" })
+map("n", "<leader>yp", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied path: " .. path)
+end, { desc = "Copy absolute file path" })
+map("n", "<leader>yr", function()
+  local path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied relative path: " .. path)
+end, { desc = "Copy relative file path" })
