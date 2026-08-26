@@ -39,6 +39,48 @@ vim.opt.runtimepath:remove("/usr/share/vim/vimfiles")
 
 vim.g.transparent = true
 
+local trailing_whitespace_group = "TrailingWhitespace"
+local trailing_whitespace_match_var = "trailing_whitespace_match_id"
+
+local function set_trailing_whitespace_highlight()
+  vim.api.nvim_set_hl(0, trailing_whitespace_group, {
+    bg = "#ff005f",
+    fg = "#ffffff",
+    bold = true,
+  })
+end
+
+local function highlight_trailing_whitespace()
+  local win = vim.api.nvim_get_current_win()
+  local match_id = vim.w[trailing_whitespace_match_var]
+
+  if match_id then
+    for _, match in ipairs(vim.fn.getmatches(win)) do
+      if match.id == match_id then
+        return
+      end
+    end
+  end
+
+  vim.w[trailing_whitespace_match_var] =
+    vim.fn.matchadd(trailing_whitespace_group, [[\s\+$]], 100, -1, { window = win })
+end
+
+local trailing_whitespace_group_id = vim.api.nvim_create_augroup("trailing-whitespace", { clear = true })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = trailing_whitespace_group_id,
+  callback = set_trailing_whitespace_highlight,
+})
+
+vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+  group = trailing_whitespace_group_id,
+  callback = highlight_trailing_whitespace,
+})
+
+set_trailing_whitespace_highlight()
+highlight_trailing_whitespace()
+
 local filetype_group = vim.api.nvim_create_augroup("filetype-settings", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {

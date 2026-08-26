@@ -31,6 +31,20 @@ map("n", "<leader>lw", "<cmd>setlocal wrap!<cr>", { desc = "Toggle line wrapping
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
+local function trim_trailing_whitespace()
+  local view = vim.fn.winsaveview()
+  vim.cmd([[silent keepjumps keeppatterns %s/[ \t]\+$//e]])
+  vim.fn.winrestview(view)
+end
+
+map("n", "<leader>cw", trim_trailing_whitespace, { desc = "Trim trailing whitespace" })
+map(
+  "x",
+  "<leader>cw",
+  [[:<C-u>silent keepjumps keeppatterns '<,'>s/[ \t]\+$//e<CR>]],
+  { desc = "Trim trailing whitespace in selection" }
+)
+
 map("n", "\\d", function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Previous diagnostic" })
