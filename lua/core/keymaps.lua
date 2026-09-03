@@ -31,6 +31,14 @@ map("n", "<leader>lw", "<cmd>setlocal wrap!<cr>", { desc = "Toggle line wrapping
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
+-- signcolumn toggle
+vim.api.nvim_set_keymap(
+  "n",
+  "<Leader>tsc",
+  ':lua vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"<CR>',
+  { noremap = true, silent = true }
+)
+
 local function trim_trailing_whitespace()
   local view = vim.fn.winsaveview()
   vim.cmd([[silent keepjumps keeppatterns %s/[ \t]\+$//e]])
