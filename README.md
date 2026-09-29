@@ -1,7 +1,9 @@
 # Neovim configuration
 
 One shared configuration for home/work Macs, Ubuntu, RHEL8 and EUHPC3.
-The **[MkDocs guide](docs/index.md)** is the documentation source of truth.
+Read the **[Neovim field guide](https://etibger.github.io/neovim_config/)**
+for the rendered documentation, searchable keybindings and downloadable A3 cheat
+sheet. The [MkDocs source](docs/index.md) lives in this repository.
 
 ## Read the guide
 
@@ -31,7 +33,8 @@ make cheat-sheet   # Regenerate the keybinding reference and A3 PDF only
 The site configuration is [mkdocs.yml](mkdocs.yml). Dependencies are declared in
 [requirements-docs.txt](requirements-docs.txt). Build output goes to `site/`;
 the printable sheet is generated at `docs/assets/neovim-a3-cheat-sheet.pdf`.
-Both outputs are ignored by Git. Build commands do not publish the site.
+Both outputs are ignored by Git. Local build commands do not publish the site.
+GitHub Actions publishes documentation changes on `master` to GitHub Pages.
 
 Edit the pages under `docs/` for documentation changes. Edit
 [docs/keybindings.json](docs/keybindings.json) for shortcut-reference changes;

@@ -57,7 +57,7 @@ landscape page. Four columns use short labels at print-readable size; use the
 workflow pages for explanations and caveats.
 
 The generated PDF is `docs/assets/neovim-a3-cheat-sheet.pdf`; both it and `site/`
-are ignored by Git. The site includes a download link to the PDF. Building does
+are ignored by Git. The site includes a download link to the PDF. Local building does
 not publish anything or push a documentation branch. MkDocs configuration and
 build behavior follow the [official configuration guide](https://www.mkdocs.org/user-guide/configuration/)
 and [static-site build guidance](https://www.mkdocs.org/user-guide/deploying-your-docs/).
@@ -65,6 +65,19 @@ and [static-site build guidance](https://www.mkdocs.org/user-guide/deploying-you
 For visual PDF QA, render with Poppler (`pdftoppm -png ...`) and inspect the page
 at readable resolution. Print on A3 landscape at actual size; fitting it onto A4
 reduces the text substantially.
+
+## Publishing to GitHub Pages
+
+The live guide is at **https://etibger.github.io/neovim_config/**.
+The public repository uses GitHub Actions as its Pages publishing source.
+`.github/workflows/docs.yml` builds the reference and PDF, runs strict MkDocs
+validation, uploads `site/`, and deploys it to the `github-pages` environment.
+
+Changes to documentation, its generator, requirements, MkDocs configuration or
+the workflow on `master` trigger publication. To publish manually, open the
+repository's **Actions → Publish documentation → Run workflow** and choose
+`master`. Inspect that workflow run if an update is not visible on the live site.
+The generated site and PDF do not need to be committed.
 
 ## Configuration checks
 

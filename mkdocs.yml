@@ -1,4 +1,5 @@
 site_name: Neovim field guide
+site_url: https://etibger.github.io/neovim_config/
 site_description: One configuration, five machines, and a lightweight HPC profile.
 theme:
   name: mkdocs
