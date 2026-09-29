@@ -1,4 +1,31 @@
-:root { --guide-accent: #147d80; }
+:root {
+  --guide-accent: #147d80;
+  --guide-page-width: 96%;
+  --guide-prose-width: 100ch;
+}
+/* Replace Bootstrap's fixed desktop cap with a fluid page and bounded sidebar. */
+@media screen and (min-width: 768px) {
+  body > .container,
+  .navbar > .container {
+    width: var(--guide-page-width);
+    max-width: none;
+  }
+  body > .container > .row > .col-md-3 {
+    flex: 0 0 clamp(14rem, 18vw, 20rem);
+    width: clamp(14rem, 18vw, 20rem);
+  }
+  body > .container > .row > [role="main"] {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+  [role="main"] > p,
+  [role="main"] > ul,
+  [role="main"] > ol,
+  [role="main"] > .admonition {
+    max-width: var(--guide-prose-width);
+  }
+}
 h1, h2, h3 { letter-spacing: -.025em; }
 h1 { border-bottom: 3px solid var(--guide-accent); padding-bottom: .4em; }
 table { width: 100%; }
