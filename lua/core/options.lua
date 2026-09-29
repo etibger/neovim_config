@@ -31,7 +31,9 @@ vim.opt.scrolloff = 5
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 vim.opt.tagrelative = false
-vim.opt.tags = { "tags/gpu_design", "tags/gpu_verif" }
+if require("core.workspace").work then
+  vim.opt.tags = { "tags/gpu_design", "tags/gpu_verif" }
+end
 vim.opt.shortmess:append("c")
 vim.opt.iskeyword:append("-")
 vim.opt.formatoptions:remove({ "c", "r", "o" })

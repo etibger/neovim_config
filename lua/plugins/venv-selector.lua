@@ -10,15 +10,17 @@ return {
   },
   opts = {
     options = {
-      enable_default_searches = false,
+      enable_default_searches = require("core.workspace").conda == nil,
       picker = "fzf-lua",
       picker_filter_type = "character",
     },
-    search = {
-      my_venvs = {
-        command = "fd 'python$' /opt/homebrew/anaconda3/envs/ --full-path -IH -a",
-        type = "anaconda",
-      },
-    },
+    search = require("core.workspace").conda
+        and {
+          my_venvs = {
+            command = "fd 'python$' " .. vim.fn.shellescape(require("core.workspace").conda) .. " --full-path -IH -a",
+            type = "anaconda",
+          },
+        }
+      or {},
   },
 }

@@ -72,13 +72,21 @@ map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Diagnostics location list" })
 map("n", "<leader><CR>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
 
-map("n", "<leader>ot", "<cmd>split term://zsh<cr>", { desc = "Open terminal" })
+map("n", "<leader>ot", function()
+  vim.cmd("split")
+  vim.cmd("terminal")
+end, { desc = "Open terminal using the configured shell" })
 map("n", "<leader>nt", function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = "Toggle relative numbers" })
 map("n", "<leader>sc", "<cmd>setlocal spell<cr>", { desc = "Enable spell checking" })
 map("n", "<leader>nsc", "<cmd>setlocal nospell<cr>", { desc = "Disable spell checking" })
-map("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
+if require("core.workspace").plugins then
+  map("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
+end
+for _, direction in ipairs({ "h", "j", "k", "l" }) do
+  map("n", "<C-" .. direction .. ">", "<C-w>" .. direction, { desc = "Navigate splits" })
+end
 map("n", ";s", "]s", { desc = "Next misspelling" })
 map("n", "\\s", "[s", { desc = "Previous misspelling" })
 
