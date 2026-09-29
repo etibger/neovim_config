@@ -28,6 +28,15 @@ map("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "Previous tab" })
 
 map("n", "<leader>lw", "<cmd>setlocal wrap!<cr>", { desc = "Toggle line wrapping" })
+map("n", "<leader>swc", function()
+  vim.opt_local.textwidth = 120
+  vim.opt_local.formatoptions:append("t")
+  vim.notify("Text width set to 120 columns")
+end, { desc = "Set text width to 120 columns" })
+map("n", "<leader>cwc", function()
+  vim.opt_local.textwidth = 0
+  vim.notify("Text width cleared")
+end, { desc = "Clear text width" })
 map("v", "<", "<gv", opts)
 map("v", ">", ">gv", opts)
 
