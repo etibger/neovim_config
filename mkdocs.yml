@@ -1,0 +1,28 @@
+site_name: Neovim field guide
+site_description: One configuration, five machines, and a lightweight HPC profile.
+theme:
+  name: mkdocs
+  color_mode: auto
+  navigation_depth: 3
+nav:
+  - Start here: index.md
+  - Installation: setup.md
+  - Workspaces: workspaces.md
+  - Daily workflows: workflows.md
+  - Keybinding reference: keybindings.md
+  - Nonstandard settings: settings.md
+  - Configuration architecture: architecture.md
+  - Maintenance: maintenance.md
+plugins:
+  - search
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+extra_css:
+  - stylesheets/extra.css
+validation:
+  links:
+    not_found: warn
+    anchors: warn

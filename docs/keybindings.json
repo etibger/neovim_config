@@ -1,0 +1,602 @@
+[
+  {
+    "column": 0,
+    "title": "Everyday editing",
+    "scope": "All profiles",
+    "source": "lua/core/keymaps.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": "jk [Insert]",
+        "action": "Leave Insert mode"
+      },
+      {
+        "keys": ",e / -",
+        "action": "Explore files / parent directory"
+      },
+      {
+        "keys": "Tab / Shift-Tab",
+        "action": "Next / previous buffer"
+      },
+      {
+        "keys": ",x",
+        "action": "Force-delete buffer (unsaved edits too)"
+      },
+      {
+        "keys": ",pp",
+        "action": "Toggle paste mode"
+      },
+      {
+        "keys": ",sn",
+        "action": "Save without autocommands"
+      },
+      {
+        "keys": ",yp / ,yr",
+        "action": "Copy absolute / relative path to +"
+      },
+      {
+        "keys": ",<Enter>",
+        "action": "Clear search highlighting"
+      },
+      {
+        "keys": ",ot",
+        "action": "Open shell terminal in a split"
+      },
+      {
+        "keys": "Ctrl-\\ Ctrl-n",
+        "action": "Leave Terminal mode (native)"
+      },
+      {
+        "keys": ",ut [Full]",
+        "action": "Toggle undo history tree"
+      },
+      {
+        "keys": "< / > [Visual]",
+        "action": "Indent and keep selection"
+      }
+    ]
+  },
+  {
+    "column": 0,
+    "title": "Windows and tabs",
+    "scope": "All profiles",
+    "source": "lua/core/keymaps.lua",
+    "note": "Mac profiles extend Ctrl-h/j/k/l across Herdr panes.",
+    "rows": [
+      {
+        "keys": ",v / ,h",
+        "action": "Vertical / horizontal split"
+      },
+      {
+        "keys": "Ctrl-h/j/k/l",
+        "action": "Focus left/down/up/right window"
+      },
+      {
+        "keys": ",xs",
+        "action": "Close current split"
+      },
+      {
+        "keys": "Up / Down",
+        "action": "Shrink / grow window height"
+      },
+      {
+        "keys": "Left / Right",
+        "action": "Shrink / grow window width"
+      },
+      {
+        "keys": ",to / ,tx",
+        "action": "New / close tab page"
+      },
+      {
+        "keys": ",tn / ,tp",
+        "action": "Next / previous tab page"
+      }
+    ]
+  },
+  {
+    "column": 0,
+    "title": "Display and spelling",
+    "scope": "All profiles",
+    "source": "lua/core/keymaps.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": ",lw",
+        "action": "Toggle visual line wrapping"
+      },
+      {
+        "keys": ",nt",
+        "action": "Toggle relative line numbers"
+      },
+      {
+        "keys": ",tsc",
+        "action": "Toggle the whole sign column"
+      },
+      {
+        "keys": ",tt",
+        "action": "Toggle transparency"
+      },
+      {
+        "keys": ",sc / ,nsc",
+        "action": "Enable / disable buffer spelling"
+      },
+      {
+        "keys": ";s / \\s",
+        "action": "Next / previous misspelling"
+      },
+      {
+        "keys": "z=",
+        "action": "Spelling suggestions (native)"
+      }
+    ]
+  },
+  {
+    "column": 0,
+    "title": "EUHPC3 / minimal overrides",
+    "scope": "Minimal profiles only",
+    "source": "lua/core/minimal.lua",
+    "note": "No fzf, LSP, DAP, Git plugins or installs. EUHPC3 retains work tags and manual AUTO commands.",
+    "rows": [
+      {
+        "keys": ",e / -",
+        "action": "Netrw / parent directory"
+      },
+      {
+        "keys": ",b",
+        "action": "New empty buffer"
+      },
+      {
+        "keys": ",se",
+        "action": "Equalize window sizes"
+      },
+      {
+        "keys": "Shift-h / Shift-l",
+        "action": "Previous / next buffer"
+      },
+      {
+        "keys": "Ctrl-d / Ctrl-u",
+        "action": "Half-page scroll, then center"
+      },
+      {
+        "keys": "Ctrl-] / Ctrl-t",
+        "action": "Follow tag / return (native)"
+      }
+    ]
+  },
+  {
+    "column": 1,
+    "title": "Formatting and whitespace",
+    "scope": "All profiles; ,cf needs a formatting client",
+    "source": "lua/core/keymaps.lua; lua/plugins/autoformatting.lua",
+    "note": "Formatting is manual, not on save. Lua: StyLua; Python: Ruff; web: Prettier; shell: shfmt; C: clangd.",
+    "rows": [
+      {
+        "keys": ",cf [Full]",
+        "action": "Format buffer through LSP / none-ls"
+      },
+      {
+        "keys": ",cw",
+        "action": "Trim trailing whitespace in buffer"
+      },
+      {
+        "keys": ",cw [Visual]",
+        "action": "Trim trailing whitespace in selection"
+      },
+      {
+        "keys": ",swc",
+        "action": "Set local textwidth to 120; add t flag"
+      },
+      {
+        "keys": ",cwc",
+        "action": "Clear local textwidth"
+      },
+      {
+        "keys": "gq{motion}",
+        "action": "Reflow text (native)"
+      }
+    ]
+  },
+  {
+    "column": 1,
+    "title": "Language server navigation",
+    "scope": "Full profiles; attached client required",
+    "source": "lua/plugins/lsp.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": "grn",
+        "action": "Rename symbol"
+      },
+      {
+        "keys": "grd / grD",
+        "action": "Definitions / declarations"
+      },
+      {
+        "keys": "grr / gri",
+        "action": "References / implementations"
+      },
+      {
+        "keys": "grt",
+        "action": "Type definitions"
+      },
+      {
+        "keys": "gO / gW",
+        "action": "Document / workspace symbols"
+      },
+      {
+        "keys": ",fa",
+        "action": "Code actions via fzf-lua"
+      },
+      {
+        "keys": ",th",
+        "action": "Toggle inlay hints, if supported"
+      }
+    ]
+  },
+  {
+    "column": 1,
+    "title": "Diagnostics",
+    "scope": "Full profiles with diagnostic producers",
+    "source": "lua/core/keymaps.lua; lua/plugins/fzf-lua.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": ";d / \\d",
+        "action": "Next / previous diagnostic + float"
+      },
+      {
+        "keys": ",d",
+        "action": "Show diagnostic float"
+      },
+      {
+        "keys": ",q",
+        "action": "Put diagnostics in location list"
+      },
+      {
+        "keys": ":lopen",
+        "action": "Open location list (native)"
+      },
+      {
+        "keys": ",fd",
+        "action": "Search document diagnostics"
+      }
+    ]
+  },
+  {
+    "column": 1,
+    "title": "Completion and snippets",
+    "scope": "Full profiles; Insert mode (snippet keys also Select)",
+    "source": "lua/plugins/autocompletion.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": "Ctrl-Space",
+        "action": "Request completion"
+      },
+      {
+        "keys": "Ctrl-n / Ctrl-p",
+        "action": "Next / previous completion"
+      },
+      {
+        "keys": "Ctrl-y",
+        "action": "Accept completion (select=true)"
+      },
+      {
+        "keys": "Tab / Shift-Tab",
+        "action": "Menu, then snippet, then fallback"
+      },
+      {
+        "keys": "Ctrl-l / Ctrl-h",
+        "action": "Snippet expand/next / previous"
+      },
+      {
+        "keys": "Ctrl-b / Ctrl-f",
+        "action": "Scroll docs up / down"
+      },
+      {
+        "keys": ",se [Normal]",
+        "action": "Choose Python environment"
+      }
+    ]
+  },
+  {
+    "column": 1,
+    "title": "Verilog AUTO",
+    "scope": "Work Linux profiles; Verilog/SystemVerilog buffers",
+    "source": "lua/config/verilogauto.lua",
+    "note": "Requires MALI_HOME + mrun. Waits for Emacs; updates the buffer without saving it.",
+    "rows": [
+      {
+        "keys": ",va",
+        "action": "Expand AUTO via work Emacs wrapper"
+      },
+      {
+        "keys": ",vd",
+        "action": "Delete AUTO expansion"
+      }
+    ]
+  },
+  {
+    "column": 2,
+    "title": "fzf search and pickers",
+    "scope": "Full profiles",
+    "source": "lua/plugins/fzf-lua.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": ",ff",
+        "action": "Find project files"
+      },
+      {
+        "keys": ",fg",
+        "action": "Live grep project text"
+      },
+      {
+        "keys": ",/",
+        "action": "Live grep current buffer"
+      },
+      {
+        "keys": ",fw / ,fW",
+        "action": "Search cursor word / WORD"
+      },
+      {
+        "keys": ",,",
+        "action": "Open buffers"
+      },
+      {
+        "keys": ",fb",
+        "action": "Picker catalog (not buffers)"
+      },
+      {
+        "keys": ",fo",
+        "action": "Recently opened files"
+      },
+      {
+        "keys": ",fr",
+        "action": "Resume previous picker"
+      },
+      {
+        "keys": ",fc",
+        "action": "Find in Neovim configuration"
+      },
+      {
+        "keys": ",fh / ,fk",
+        "action": "Help tags / keymaps"
+      },
+      {
+        "keys": ",fd / ,fa",
+        "action": "Document diagnostics / code actions"
+      }
+    ]
+  },
+  {
+    "column": 2,
+    "title": "Git hunks and blame",
+    "scope": "Full profiles; Gitsigns attached to buffer",
+    "source": "lua/plugins/gitsigns.lua",
+    "note": "Reset discards changes. In diff mode, ;c and \\c use native hunk navigation.",
+    "rows": [
+      {
+        "keys": ";c / \\c",
+        "action": "Next / previous hunk"
+      },
+      {
+        "keys": ",hs / ,hr",
+        "action": "Stage / reset hunk (also Visual)"
+      },
+      {
+        "keys": ",hS / ,hR",
+        "action": "Stage / reset entire buffer"
+      },
+      {
+        "keys": ",hp / ,hi",
+        "action": "Popup / inline hunk preview"
+      },
+      {
+        "keys": ",hb",
+        "action": "Full blame for current line"
+      },
+      {
+        "keys": ",hd / ,hD",
+        "action": "Diff vs index / previous commit"
+      },
+      {
+        "keys": ",hq / ,hQ",
+        "action": "Quickfix: buffer / repository hunks"
+      },
+      {
+        "keys": ",tg",
+        "action": "Toggle Git signs"
+      },
+      {
+        "keys": ",tb",
+        "action": "Toggle current-line blame"
+      },
+      {
+        "keys": ",tw",
+        "action": "Toggle word diff"
+      },
+      {
+        "keys": "ih [Visual/operator]",
+        "action": "Select hunk text object"
+      },
+      {
+        "keys": ":copen",
+        "action": "Open quickfix (native)"
+      }
+    ]
+  },
+  {
+    "column": 2,
+    "title": "tpope Fugitive commands",
+    "scope": "Full profiles; plugin defaults",
+    "source": "vim-fugitive/doc/fugitive.txt",
+    "note": "",
+    "rows": [
+      {
+        "keys": ":Git / :G",
+        "action": "Open Git status"
+      },
+      {
+        "keys": ":Gvdiffsplit",
+        "action": "Vertical diff against index"
+      },
+      {
+        "keys": ":Git blame",
+        "action": "Open file blame"
+      },
+      {
+        "keys": ":Gclog",
+        "action": "Current file history in quickfix"
+      },
+      {
+        "keys": ":Ggrep pattern",
+        "action": "Search tracked files"
+      },
+      {
+        "keys": ":GBrowse",
+        "action": "Remote web view (Rhubarb: GitHub)"
+      },
+      {
+        "keys": ":Gwrite",
+        "action": "Write AND stage current file"
+      }
+    ]
+  },
+  {
+    "column": 3,
+    "title": "Inside Fugitive status",
+    "scope": "Full profiles; buffer-local plugin defaults",
+    "source": "vim-fugitive/doc/fugitive.txt",
+    "note": "Enter status with :Git. There is no custom ,gg mapping.",
+    "rows": [
+      {
+        "keys": "=",
+        "action": "Toggle inline diff"
+      },
+      {
+        "keys": "s / u",
+        "action": "Stage / unstage file or hunk"
+      },
+      {
+        "keys": "-",
+        "action": "Toggle staged state"
+      },
+      {
+        "keys": "dv",
+        "action": "Open vertical diff"
+      },
+      {
+        "keys": "Enter",
+        "action": "Open item under cursor"
+      },
+      {
+        "keys": "cc",
+        "action": "Start a commit; save/close message"
+      }
+    ]
+  },
+  {
+    "column": 3,
+    "title": "Debugging",
+    "scope": "Full profiles; nvim-dap",
+    "source": "lua/plugins/debug.lua",
+    "note": "An adapter and suitable launch configuration are required.",
+    "rows": [
+      {
+        "keys": ",b / ,B",
+        "action": "Breakpoint / conditional breakpoint"
+      },
+      {
+        "keys": "F5",
+        "action": "Start / continue debug session"
+      },
+      {
+        "keys": "F1 / F2 / F3",
+        "action": "Step into / over / out"
+      },
+      {
+        "keys": "F7",
+        "action": "Toggle debug UI"
+      }
+    ]
+  },
+  {
+    "column": 3,
+    "title": "Markdown, text and tasks",
+    "scope": "Full profiles",
+    "source": "lua/plugins/github-preview.lua; misc.lua; surround.lua; overseer.lua",
+    "note": "",
+    "rows": [
+      {
+        "keys": ",mpt",
+        "action": "Toggle GitHub preview"
+      },
+      {
+        "keys": ",mps / ,mpd",
+        "action": "Preview single-file / details tags"
+      },
+      {
+        "keys": ",tc",
+        "action": "Toggle comment display"
+      },
+      {
+        "keys": "ysiw\"",
+        "action": "Surround word with quotes (default)"
+      },
+      {
+        "keys": "cs\"' / ds\"",
+        "action": "Change / delete quotes (defaults)"
+      },
+      {
+        "keys": "S [Visual]",
+        "action": "Surround selection (default)"
+      },
+      {
+        "keys": ":OverseerRun",
+        "action": "Choose and run a task"
+      },
+      {
+        "keys": ":OverseerToggle",
+        "action": "Toggle task list"
+      }
+    ]
+  },
+  {
+    "column": 3,
+    "title": "Workspace selection",
+    "scope": "Type colon commands INSIDE Neovim",
+    "source": "lua/core/workspace.lua",
+    "note": "Restart after selecting. NVIM_WORKSPACE overrides the saved, Git-ignored workspace file.",
+    "rows": [
+      {
+        "keys": ":Workspace",
+        "action": "Show active profile"
+      },
+      {
+        "keys": ":Workspace mac_home",
+        "action": "Save home Mac profile"
+      },
+      {
+        "keys": ":Workspace mac_office",
+        "action": "Save work Mac profile"
+      },
+      {
+        "keys": ":Workspace ubuntu",
+        "action": "Save Ubuntu profile"
+      },
+      {
+        "keys": ":Workspace rhel8_vm",
+        "action": "Save RHEL8 VM profile"
+      },
+      {
+        "keys": ":Workspace euhpc3",
+        "action": "Save lightweight HPC profile"
+      },
+      {
+        "keys": ":Workspace minimal",
+        "action": "Save generic plugin-free profile"
+      }
+    ]
+  }
+]

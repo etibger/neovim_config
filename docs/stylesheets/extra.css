@@ -1,0 +1,9 @@
+:root { --guide-accent: #147d80; }
+h1, h2, h3 { letter-spacing: -.025em; }
+h1 { border-bottom: 3px solid var(--guide-accent); padding-bottom: .4em; }
+table { width: 100%; }
+td, th { padding: .55em .7em !important; vertical-align: top; }
+td:first-child code { white-space: nowrap; }
+.admonition { border-left: 4px solid var(--guide-accent); padding: .8em 1.2em; background: rgba(20,125,128,.07); }
+.admonition-title { font-weight: 700; }
+@media print { .navbar, .bs-sidebar, footer { display: none; } .col-md-9 { width: 100%; } }
